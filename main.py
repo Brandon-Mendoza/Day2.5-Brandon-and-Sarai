@@ -17,7 +17,12 @@ class MainHandler(webapp2.RequestHandler):
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       if cssi_user:
         self.response.write(
-          "Looks like you're registered. Thanks for using our site!")
+          Welcome %s %s (%s)! <br> %s <br>''' % (
+          cssi_user.first_name,
+          cssi_user.last_name,
+          email_adress,
+          signout_link_html)
+          )
       else:
         # Registration form for a first-time visitor:
         self.response.write('''
