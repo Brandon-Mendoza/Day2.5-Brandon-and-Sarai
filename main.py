@@ -54,11 +54,31 @@ class MainHandler(webapp2.RequestHandler):
 
 
     def post(self):
+<<<<<<< HEAD
+        user = users.get_current_user()
+        if not user:
+      # You shouldn't be able to get here without being logged in
+        self.redirect('/')
+        else:
+=======
       user = users.get_current_user()
       if not user:
           # You shouldn't be able to get here without being logged in
           self.redirect('/')
 
+<<<<<<< HEAD
+    else:
+>>>>>>> c706b2a2b78577501d14e2c080ea2cd22c50df70
+      # Create a new CSSI user.
+        cssi_user = CssiUser(
+            first_name=self.request.get('first_name'),
+            last_name=self.request.get('last_name'),
+            email=user.nickname())
+      # Store that Entity in Datastore.
+        cssi_user.put()
+      # Show confirmation to the user. Include a link back to the index.
+        self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+=======
       else:
           # Create a new CSSI user.
           cssi_user = CssiUser(
@@ -69,7 +89,12 @@ class MainHandler(webapp2.RequestHandler):
           cssi_user.put()
           # Show confirmation to the user. Include a link back to the index.
           self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+<<<<<<< HEAD
           cssi_user.first_name) 
+=======
+>>>>>>> e58ad91d11bd6f167c85f197a0c79c7f472a1437
+          cssi_user.first_name)
+>>>>>>> af09b74a4b0daade27f5e554f5b3ab9b4c4e2799
 
 
 app = webapp2.WSGIApplication([
