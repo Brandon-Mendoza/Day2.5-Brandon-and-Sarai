@@ -69,7 +69,7 @@ class MainHandler(webapp2.RequestHandler):
           cssi_user.put()
           # Show confirmation to the user. Include a link back to the index.
           self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
-          cssi_user.first_name)
+          cssi_user.first_name) 
 
 
 app = webapp2.WSGIApplication([
