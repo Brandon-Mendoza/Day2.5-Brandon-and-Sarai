@@ -54,11 +54,20 @@ class MainHandler(webapp2.RequestHandler):
 
 
     def post(self):
+<<<<<<< HEAD
         user = users.get_current_user()
         if not user:
       # You shouldn't be able to get here without being logged in
         self.redirect('/')
         else:
+=======
+      user = users.get_current_user()
+      if not user:
+          # You shouldn't be able to get here without being logged in
+          self.redirect('/')
+
+    else:
+>>>>>>> c706b2a2b78577501d14e2c080ea2cd22c50df70
       # Create a new CSSI user.
         cssi_user = CssiUser(
             first_name=self.request.get('first_name'),
