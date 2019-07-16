@@ -57,17 +57,17 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if not user:
       # You shouldn't be able to get here without being logged in
-      self.redirect('/')
-    else:
+        self.redirect('/')
+        else:
       # Create a new CSSI user.
-      cssi_user = CssiUser(
-        first_name=self.request.get('first_name'),
-        last_name=self.request.get('last_name'),
-        email=user.nickname())
+        cssi_user = CssiUser(
+            first_name=self.request.get('first_name'),
+            last_name=self.request.get('last_name'),
+            email=user.nickname())
       # Store that Entity in Datastore.
-      cssi_user.put()
+        cssi_user.put()
       # Show confirmation to the user. Include a link back to the index.
-      self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
+        self.response.write('Thanks for signing up, %s! <br><a href="/">Home</a>' %
           cssi_user.first_name)
 
 
