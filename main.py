@@ -16,11 +16,11 @@ class MainHandler(webapp2.RequestHandler):
       email_address = user.nickname()
       cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
       if cssi_user:
-        self.response.write(
+        self.response.write('''
           Welcome %s %s (%s)! <br> %s <br>''' % (
           cssi_user.first_name,
           cssi_user.last_name,
-          email_adress,
+          email_address,
           signout_link_html)
           )
       else:
