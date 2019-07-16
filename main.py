@@ -7,6 +7,18 @@ class CssiUser(ndb.Model):
   last_name = ndb.StringProperty()
   email = ndb.StringProperty()
 
+class SecretHandler(webapp2.RequestHandler):
+  def get(self):
+    user = users.get_current_user()
+    if user:
+      email_address = user.nickname()
+      cssi_user = CssiUser.query().filter(CssiUser.email == email_address).get()
+      if cssi_user:
+        self.response.write("You found the secret content!")
+        return
+    self.error(403)
+    return
+
 class MainHandler(webapp2.RequestHandler):
   def get(self):
     user = users.get_current_user()
@@ -60,5 +72,6 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-  ('/', MainHandler)
+  ('/', MainHandler),
+  ('/classified', SecretHandler)
 ], debug=True)
